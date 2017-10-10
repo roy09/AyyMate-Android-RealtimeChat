@@ -40,7 +40,11 @@ dependencies {
 
     // Displaying images
     compile 'com.github.bumptech.glide:glide:3.6.1'
-    compile 'com.google.firebase:firebase-database:11.4.0'
+
+    compile 'com.google.firebase:firebase-database:9.6.0'
+    compile 'com.google.firebase:firebase-auth:9.6.0'
+    compile 'com.firebaseui:firebase-ui-auth:0.6.0'
+    compile "com.google.android.gms:play-services-location:9.6.0"
 }
 
 apply plugin: 'com.google.gms.google-services'
