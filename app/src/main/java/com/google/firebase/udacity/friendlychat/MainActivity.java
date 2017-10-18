@@ -48,6 +48,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAUth = FirebaseAuth.getInstance();
         mFirebaseStorage = FirebaseStorage.getInstance();
 
-        mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("messages");
+        mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("group");
         mChatPhotoStorageReference = mFirebaseStorage.getReference().child("chat_photos");
 
         // Initialize references to views
@@ -169,10 +170,8 @@ public class MainActivity extends AppCompatActivity {
                     startActivityForResult(
                             AuthUI.getInstance()
                                     .createSignInIntentBuilder()
-                                    .setIsSmartLockEnabled(false) // might consider making it true
-                                    .setProviders(
-                                            AuthUI.EMAIL_PROVIDER,
-                                            AuthUI.GOOGLE_PROVIDER)
+                                    .setAvailableProviders(
+                                            Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build()))
                                     .build(),
                             RC_SIGN_IN);
                 }
