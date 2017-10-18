@@ -44,10 +44,6 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        mToolbar = (Toolbar) findViewById(R.id.login_toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Login");
 
 
         mLoginProgress = new ProgressDialog(this);
@@ -103,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent mainIntent = new Intent(LoginActivity.this, TempActivity.class);
                             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(mainIntent);
                             finish();

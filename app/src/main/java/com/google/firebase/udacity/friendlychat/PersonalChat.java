@@ -23,6 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -43,6 +44,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -72,6 +74,8 @@ public class PersonalChat extends AppCompatActivity {
 
     private FirebaseDatabase mFirebaseDatabase; // this references to the firebase db
     private DatabaseReference mMessagesDatabaseReference; // reference to particular section of db
+    private DatabaseReference mUserDatabaseReference;
+
     private ChildEventListener mChildEventListener; // a listener to listen to a particular section of db
     private FirebaseStorage mFirebaseStorage; // reference to firebase storage
 
@@ -162,8 +166,21 @@ public class PersonalChat extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null){
                     // user is logged in
-                    onSignedInInitialize(user.getDisplayName());
-                    Toast.makeText(PersonalChat.this, "You're signed in", Toast.LENGTH_SHORT).show();
+                    String uid = user.getUid();
+                    mUserDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("name");
+                    mUserDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            String userDisplayName = (String) dataSnapshot.getValue();
+                            onSignedInInitialize(userDisplayName);
+                            Toast.makeText(PersonalChat.this, "You're signed in", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                        }
+                    });
+
                 } else {
                     // user is logged out, so initate login activity
                     onSignedOutCleanup();

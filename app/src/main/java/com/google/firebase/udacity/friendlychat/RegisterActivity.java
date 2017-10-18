@@ -48,24 +48,12 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        //Toolbar Set
-        mToolbar = (Toolbar) findViewById(R.id.register_toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Create Account");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
         mRegProgress = new ProgressDialog(this);
 
-
-
         // Firebase Auth
-
         mAuth = FirebaseAuth.getInstance();
 
-
         // Android Fields
-
         mDisplayName = (TextInputLayout) findViewById(R.id.register_display_name);
         mEmail = (TextInputLayout) findViewById(R.id.register_email);
         mPassword = (TextInputLayout) findViewById(R.id.reg_password);
@@ -130,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 mRegProgress.dismiss();
 
-                                Intent mainIntent = new Intent(RegisterActivity.this, MainActivity.class);
+                                Intent mainIntent = new Intent(RegisterActivity.this, TempActivity.class);
                                 mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(mainIntent);
                                 finish();
