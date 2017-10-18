@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAUth = FirebaseAuth.getInstance();
         mFirebaseStorage = FirebaseStorage.getInstance();
 
-        mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("group");
+        mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("groups");
         mChatPhotoStorageReference = mFirebaseStorage.getReference().child("chat_photos");
 
         // Initialize references to views
