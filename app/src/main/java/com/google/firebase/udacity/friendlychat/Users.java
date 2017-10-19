@@ -10,6 +10,8 @@ public class Users {
     public String image;
     public String status;
     public String thumb_image;
+    public String group;
+    public String uid;
 
 
 
@@ -54,6 +56,14 @@ public class Users {
 
     public void setThumb_image(String thumb_image) {
         this.thumb_image = thumb_image;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 
 }
