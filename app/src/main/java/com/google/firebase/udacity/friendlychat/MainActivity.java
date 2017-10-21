@@ -23,6 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mSendButton;
 
     private String mUsername;
+    private String userGroup;
 
 
     private FirebaseDatabase mFirebaseDatabase; // this references to the firebase db
@@ -163,8 +165,36 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null){
                     // user is logged in
-                    mMessagesDatabaseReference = FirebaseDatabase.getInstance().getReference().child("groups").child("1").child("messages");
                     String uid = user.getUid();
+
+
+                    // setting user name in the app
+
+
+                    // connect to group chat
+                    DatabaseReference userGroupReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("group");
+                    userGroupReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            Log.e("OH", "WE ARE HERE");
+//                            userGroup = "24";
+//                            Log.e("OH PASA",(String) dataSnapshot.getValue());
+                            userGroup = (String) dataSnapshot.getValue();
+                            mMessagesDatabaseReference = FirebaseDatabase.getInstance().getReference().child("groups").child(userGroup).child("messages");
+
+                        }
+//
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+//                    Log.e("USER GROUP", userGroup);
+
+
+
+
                     mUserDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("name");
                     mUserDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
