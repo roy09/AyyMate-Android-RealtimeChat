@@ -66,4 +66,11 @@ public class Users {
         this.group = group;
     }
 
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 }

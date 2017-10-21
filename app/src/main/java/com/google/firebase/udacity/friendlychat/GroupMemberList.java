@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GroupMemberList extends AppCompatActivity {
 
@@ -23,9 +24,13 @@ public class GroupMemberList extends AppCompatActivity {
     FirebaseDatabase mDatabase;
     DatabaseReference mUserGroupReference;
     DatabaseReference mGroupMemberReference;
-    ArrayList<String> items;
+    DatabaseReference mUserDatabaseReference;
+
+    UserAdapter mUserAdapter;
 
     String userGroup;
+    String userID;
+    DataSnapshot tempUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +38,16 @@ public class GroupMemberList extends AppCompatActivity {
         setContentView(R.layout.activity_group_member_list);
 
         mListView = (ListView) findViewById(R.id.listview);
-        items = new ArrayList<String>();
-        final ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
-        mListView.setAdapter(itemsAdapter);
+
+        final List<Users> usersList = new ArrayList<>();
+        mUserAdapter = new UserAdapter(this, R.layout.item_user, usersList);
+        mListView.setAdapter(mUserAdapter);
 
 
         mDatabase = FirebaseDatabase.getInstance();
 
         // getting user group
-        String userID;
+
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -63,9 +68,31 @@ public class GroupMemberList extends AppCompatActivity {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for (DataSnapshot temp: dataSnapshot.getChildren()){
-                                items.add((String) temp.getValue());
+                                tempUser = temp;
+                                Log.e("Now checking", (String) tempUser.getValue());
+                                mUserDatabaseReference = mDatabase.getReference().child("Users");
+                                mUserDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        for(DataSnapshot user : dataSnapshot.getChildren()) {
+                                            Users userObject = user.getValue(Users.class);
+                                            Log.e("Checking against", userObject.getUid());
+                                            if(userObject.getUid().equals(tempUser.getValue())){
+                                                Log.e("OH", "WE BE HRE, BRO");
+                                                usersList.add(userObject);
+                                                mUserAdapter.notifyDataSetChanged();
+                                            }
+                                            
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+                                    }
+                                });
                             }
-                            itemsAdapter.notifyDataSetChanged();
+
                         }
 
                         @Override
