@@ -336,8 +336,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void groupList(View v){
-        Intent intent = new Intent(this, GroupMember.class);
+    public void groupList(View v){
+        Intent intent = new Intent(this, GroupMemberList.class);
         startActivity(intent);
     }
 
