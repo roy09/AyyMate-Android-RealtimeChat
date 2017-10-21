@@ -20,6 +20,13 @@
         android:transcriptMode="alwaysScroll"
         tools:listitem="@layout/item_message"/>
 
+    <Button
+        android:id="@+id/btnFriendList"
+        android:text="Friends"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"

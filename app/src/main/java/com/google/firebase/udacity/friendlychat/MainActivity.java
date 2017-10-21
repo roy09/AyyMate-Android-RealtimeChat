@@ -336,5 +336,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void groupList(View v){
+        Intent intent = new Intent(this, GroupMember.class);
+        startActivity(intent);
+    }
+
 
 }
