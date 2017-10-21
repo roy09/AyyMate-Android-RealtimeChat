@@ -73,11 +73,7 @@ public class ProfileActivity extends AppCompatActivity {
         mDeclineBtn.setEnabled(false);
 
 
-        mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setTitle("Loading User Data");
-        mProgressDialog.setMessage("Please wait while we load the user data.");
-        mProgressDialog.setCanceledOnTouchOutside(false);
-        mProgressDialog.show();
+
 
 
 
@@ -154,14 +150,14 @@ public class ProfileActivity extends AppCompatActivity {
 
                                     }
 
-                                    mProgressDialog.dismiss();
+
 
                                 }
 
                                 @Override
                                 public void onCancelled(DatabaseError databaseError) {
 
-                                    mProgressDialog.dismiss();
+
 
                                 }
                             });

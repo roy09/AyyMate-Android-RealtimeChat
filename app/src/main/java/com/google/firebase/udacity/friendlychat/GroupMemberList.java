@@ -1,8 +1,12 @@
 package com.google.firebase.udacity.friendlychat;
 
+import android.content.Intent;
+import android.support.constraint.Group;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -82,7 +86,7 @@ public class GroupMemberList extends AppCompatActivity {
                                                 usersList.add(userObject);
                                                 mUserAdapter.notifyDataSetChanged();
                                             }
-                                            
+
                                         }
 
                                     }
@@ -116,6 +120,17 @@ public class GroupMemberList extends AppCompatActivity {
         } else {
             // No user is signed in
         }
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Users user = usersList.get(position);
+
+                Intent intent = new Intent(GroupMemberList.this, ProfileActivity.class);
+                intent.putExtra("user_id", user.getUid());
+                startActivity(intent);
+            }
+        });
 
 
 
