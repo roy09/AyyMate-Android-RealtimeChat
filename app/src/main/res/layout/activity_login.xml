@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:background="@color/cardview_light_background"
+            android:textColor="@android:color/white"
             android:hint="Your Email" />
     </android.support.design.widget.TextInputLayout>
 
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:background="@color/cardview_light_background"
+
             android:hint="Password" />
     </android.support.design.widget.TextInputLayout>
 
