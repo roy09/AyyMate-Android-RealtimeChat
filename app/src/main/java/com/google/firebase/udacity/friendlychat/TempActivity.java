@@ -32,6 +32,17 @@ public class TempActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goRequests(View v){
+        Intent intent = new Intent(this, RequestsActivity.class);
+        startActivity(intent);
+    }
+
+    public void allUsers(View v){
+        Intent intent = new Intent(this, UsersActivity.class);
+        startActivity(intent);
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

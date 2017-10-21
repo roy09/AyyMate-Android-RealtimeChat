@@ -22,7 +22,6 @@
         android:layout_marginStart="20dp"
         android:layout_toEndOf="@+id/user_single_image"
         android:text="Display Name"
-        android:textColor="@android:color/black"
         android:textSize="18sp" />
 
     <TextView

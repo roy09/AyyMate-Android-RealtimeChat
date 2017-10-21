@@ -130,7 +130,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                             }
 
-                            mProgressDialog.dismiss();
+                            //mProgressDialog.dismiss();
 
 
                         } else {

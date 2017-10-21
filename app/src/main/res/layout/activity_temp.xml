@@ -26,4 +26,22 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/groupChat"/>
 
+
+    <Button
+        android:id="@+id/requests"
+        android:text="Friend Requests"
+        android:onClick="goRequests"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/personalChat"/>
+
+
+    <Button
+        android:id="@+id/userlist"
+        android:text="See All User List"
+        android:onClick="allUsers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/requests"/>
+
 </RelativeLayout>
