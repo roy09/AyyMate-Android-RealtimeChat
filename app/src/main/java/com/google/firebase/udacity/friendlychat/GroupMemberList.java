@@ -95,8 +95,8 @@ public class GroupMemberList extends AppCompatActivity {
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     for(DataSnapshot user : dataSnapshot.getChildren()) {
                                         Users userObject = user.getValue(Users.class);
-                                        if (userObject.getGroup().equals("2")){
-                                            usersList.add(userObject);
+                                        if (userObject.getGroup().equals(userGroup)){
+                                            usersList.add(userObject); // was "2"
                                             mUserAdapter.notifyDataSetChanged();
                                         }
 

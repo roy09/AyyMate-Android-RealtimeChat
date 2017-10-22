@@ -180,7 +180,14 @@ public class MainActivity extends AppCompatActivity {
 //                            userGroup = "24";
 //                            Log.e("OH PASA",(String) dataSnapshot.getValue());
                             userGroup = (String) dataSnapshot.getValue();
-                            mMessagesDatabaseReference = FirebaseDatabase.getInstance().getReference().child("groups").child(userGroup).child("messages");
+                            if(userGroup != null && !userGroup.isEmpty()){
+                                mMessagesDatabaseReference = FirebaseDatabase.getInstance().getReference().child("groups").child(userGroup).child("messages");
+                            } else{
+                                Toast.makeText(MainActivity.this, "You're not currently assigned to any group", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(MainActivity.this, TempActivity.class);
+                                startActivity(intent);
+                            }
+
 
                         }
 //
@@ -323,13 +330,16 @@ public class MainActivity extends AppCompatActivity {
             };
 
             // Subscribing the listener to the 'messages' in firebase db
-            mMessagesDatabaseReference.addChildEventListener(mChildEventListener);
+            if (mMessagesDatabaseReference != null){
+                mMessagesDatabaseReference.addChildEventListener(mChildEventListener);
+            }
+
         }
 
     }
 
     private void detachDatabaseReadListner(){
-        if (mChildEventListener != null){
+        if (mChildEventListener != null && mMessagesDatabaseReference != null){
             mMessagesDatabaseReference.removeEventListener(mChildEventListener);
             mChildEventListener = null;
         }
