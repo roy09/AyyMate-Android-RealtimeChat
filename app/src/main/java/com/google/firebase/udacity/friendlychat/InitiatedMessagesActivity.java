@@ -60,5 +60,6 @@ public class InitiatedMessagesActivity extends AppCompatActivity {
 
     public void ConvoDisplayFriendList(View v){
         Intent intent = new Intent(this, ConvoDisplayFriendList.class);
+        startActivity(intent);
     }
 }
