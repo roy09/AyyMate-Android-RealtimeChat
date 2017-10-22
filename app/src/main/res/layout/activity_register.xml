@@ -5,7 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
+    <TextView
+        android:id="@+id/login_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create A New Account"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="104dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="28dp"/>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/register_display_name"
@@ -59,30 +70,21 @@
 
     <Button
         android:id="@+id/reg_create_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="172dp"
+        android:layout_height="41dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/colorAccent"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
         android:text="@string/create_account"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reg_password"
-        tools:layout_editor_absoluteX="203dp" />
+        android:layout_marginRight="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteX="204dp" />
 
-    <TextView
-        android:id="@+id/login_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Create a New Account"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="104dp" />
+
 
 
 </android.support.constraint.ConstraintLayout>
