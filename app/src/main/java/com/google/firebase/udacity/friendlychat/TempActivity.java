@@ -73,6 +73,12 @@ public class TempActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
+    public void allEvents(View v){
+        Intent intent = new Intent(this, EventsActivity.class);
+
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

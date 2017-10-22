@@ -45,4 +45,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/requests"/>
 
+
+    <Button
+        android:id="@+id/eventlist"
+        android:text="See All Events"
+        android:onClick="allEvents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/requests"/>
+
 </RelativeLayout>

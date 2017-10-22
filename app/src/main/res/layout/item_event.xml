@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="horizontal"
+android:weightSum="3">
+
+
+
+
+<TextView
+    android:id="@+id/txtViewName"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="@color/colorAccent"
+    android:textColor="@color/cardview_light_background"
+    android:padding="15dp"
+    android:textSize="20sp" />
+
+
+
+
+
+<TextView
+    android:id="@+id/txtViewNameLocation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="@color/colorPrimaryDark"
+    android:textColor="@color/cardview_light_background"
+    android:padding="15dp"
+    android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/txtViewType"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/fui_bgPhone"
+        android:padding="15dp"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="20sp" />
+
+
+</LinearLayout>
