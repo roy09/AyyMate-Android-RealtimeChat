@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="comp5216.au.edu.uni.usyd.admincomp5216.AddEventActivity">
+
+
+    <TextView
+        android:id="@+id/txtViewEventName"
+        android:text="Event Name"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/editTextEventName"
+        android:layout_below="@+id/txtViewEventName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txtViewEventLocation"
+        android:layout_below="@+id/editTextEventName"
+        android:text="Event Location"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/editTextEventLocation"
+        android:layout_below="@+id/txtViewEventLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/txtViewEventType"
+        android:layout_below="@+id/editTextEventLocation"
+        android:text="Event Type"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/editTextEventType"
+        android:layout_below="@+id/txtViewEventType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txtViewEventDesc"
+        android:layout_below="@+id/editTextEventType"
+        android:text="Event Description"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/editTextEventDesc"
+        android:layout_below="@+id/txtViewEventDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+
+</RelativeLayout>
