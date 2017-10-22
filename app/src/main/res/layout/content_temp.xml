@@ -17,7 +17,8 @@
         android:text="group chat"
         android:onClick="groupChat"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"/>
 
     <Button
         android:id="@+id/personalChat"
@@ -52,6 +53,6 @@
         android:onClick="allEvents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/requests"/>
+        android:layout_below="@+id/userlist"/>
 
 </RelativeLayout>

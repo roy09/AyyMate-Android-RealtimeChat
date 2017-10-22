@@ -105,6 +105,9 @@ public class TempActivity extends AppCompatActivity implements NavigationView.On
                 finish();
                 return true;
             case R.id.action_settings:
+                Intent settings= new Intent(this, SettingsActivity.class);
+
+                startActivity(settings);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -142,11 +145,19 @@ public class TempActivity extends AppCompatActivity implements NavigationView.On
 
             // Handle the chat action
         } else if (id == R.id.Event) {
+            Intent intent = new Intent(this, EventsActivity.class);
+
+            startActivity(intent);
 
 
         } else if (id == R.id.requests) {
+            Intent intent = new Intent(this, RequestsActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.userlist) {
+            Intent intent = new Intent(this, UsersActivity.class);
+
+            startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 
