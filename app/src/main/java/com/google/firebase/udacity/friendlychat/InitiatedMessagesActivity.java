@@ -1,7 +1,9 @@
 package com.google.firebase.udacity.friendlychat;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -54,5 +56,9 @@ public class InitiatedMessagesActivity extends AppCompatActivity {
 
             mWarning.setText("Hey, you got no friends!");
         }
+    }
+
+    public void ConvoDisplayFriendList(View v){
+        Intent intent = new Intent(this, ConvoDisplayFriendList.class);
     }
 }
