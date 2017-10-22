@@ -34,7 +34,9 @@ public class GroupMemberList extends AppCompatActivity {
 
     String userGroup;
     String userID;
-    DataSnapshot tempUser;
+    String tempUser;
+
+    ArrayList<String> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,10 @@ public class GroupMemberList extends AppCompatActivity {
 
 
         mDatabase = FirebaseDatabase.getInstance();
+
+
+        users = new ArrayList<String>();
+
 
         // getting user group
 
@@ -67,37 +73,49 @@ public class GroupMemberList extends AppCompatActivity {
 
                     Log.e("FAIL ALERT", "ABOUT TO FAIL");
                     Log.e("FAIL ALERT", userGroup);
+
+
                     mGroupMemberReference = mDatabase.getReference().child("groups").child(userGroup).child("members");
                     mGroupMemberReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            for (DataSnapshot temp: dataSnapshot.getChildren()){
-                                tempUser = temp;
-                                Log.e("Now checking", (String) tempUser.getValue());
-                                mUserDatabaseReference = mDatabase.getReference().child("Users");
-                                mUserDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(DataSnapshot dataSnapshot) {
-                                        for(DataSnapshot user : dataSnapshot.getChildren()) {
-                                            Users userObject = user.getValue(Users.class);
-                                            Log.e("Checking against", userObject.getUid());
-                                            if(userObject.getUid().equals(tempUser.getValue())){
-                                                Log.e("OH", "WE BE HRE, BRO");
-                                                usersList.add(userObject);
-                                                mUserAdapter.notifyDataSetChanged();
-                                            }
 
+                            for (DataSnapshot temp: dataSnapshot.getChildren()){
+                                users.add((String) temp.getValue());
+                                Log.e("TRYING TO ADD",  (String) temp.getValue());
+                            }
+
+
+
+                            Log.e("ABOUT TO ENTER", users.toString());
+
+                            mUserDatabaseReference = mDatabase.getReference().child("Users");
+                            mUserDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    for(DataSnapshot user : dataSnapshot.getChildren()) {
+                                        Users userObject = user.getValue(Users.class);
+                                        if (userObject.getGroup().equals("2")){
+                                            usersList.add(userObject);
+                                            mUserAdapter.notifyDataSetChanged();
                                         }
 
                                     }
 
-                                    @Override
-                                    public void onCancelled(DatabaseError databaseError) {
-                                    }
-                                });
-                            }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                }
+                            });
+
 
                         }
+
+
+
+
+
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
@@ -113,6 +131,9 @@ public class GroupMemberList extends AppCompatActivity {
 
                 }
             });
+
+
+
 
 
 
@@ -133,6 +154,10 @@ public class GroupMemberList extends AppCompatActivity {
         });
 
 
+
+    }
+
+    final private void setupMembers(final List<Users> usersList) {
 
     }
 }

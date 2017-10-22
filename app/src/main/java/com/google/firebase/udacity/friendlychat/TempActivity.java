@@ -56,7 +56,7 @@ public class TempActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void personalChat(View v){
-        Intent intent = new Intent(this, PersonalChat.class);
+        Intent intent = new Intent(this, InitiatedMessagesActivity.class);
         startActivity(intent);
     }
 
