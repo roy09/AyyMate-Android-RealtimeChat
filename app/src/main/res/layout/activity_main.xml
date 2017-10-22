@@ -39,9 +39,11 @@
 
         <ImageButton
             android:id="@+id/photoPickerButton"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:background="@android:drawable/ic_menu_gallery" />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:drawable/ic_menu_gallery"
+            android:paddingBottom="0dp"
+            android:layout_weight="0.07" />
 
         <EditText
             android:id="@+id/messageEditText"

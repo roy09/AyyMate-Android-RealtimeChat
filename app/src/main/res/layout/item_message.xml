@@ -40,9 +40,11 @@
             android:layout_alignTop="@+id/userGravitaView"
             android:layout_below="@+id/nameTextView"
             android:layout_toRightOf="@+id/userGravitaView"
-            android:layout_weight="0"
-            android:paddingBottom="4dp"
-            android:paddingTop="17dp"
+
+            android:paddingBottom="25dp"
+            android:paddingTop="19dp"
+            android:paddingLeft="26dp"
+            android:paddingRight="22dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             tools:text="Message"
             android:background="@drawable/btn_default_normal_lblue"/>
