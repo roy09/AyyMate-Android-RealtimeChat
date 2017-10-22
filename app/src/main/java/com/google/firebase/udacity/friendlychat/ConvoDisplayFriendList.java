@@ -3,6 +3,8 @@ package com.google.firebase.udacity.friendlychat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -27,6 +29,10 @@ public class ConvoDisplayFriendList extends AppCompatActivity {
 
     ArrayAdapter<String> adapter;
 
+    ArrayList<String> users;
+
+    UserAdapter mUserAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,11 +41,11 @@ public class ConvoDisplayFriendList extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
 
         ListView listView = (ListView) findViewById(R.id.listview);
-        final List<String> friendList = new ArrayList<>();
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, friendList);
-        listView.setAdapter(adapter);
+        final List<Users> usersList = new ArrayList<>();
+        mUserAdapter = new UserAdapter(this, R.layout.item_user, usersList);
+        listView.setAdapter(mUserAdapter);
 
+        users = new ArrayList<String>();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -51,8 +57,7 @@ public class ConvoDisplayFriendList extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for(DataSnapshot friendKey: dataSnapshot.getChildren()){
-                        adapter.add((String) friendKey.getKey());
-                        adapter.notifyDataSetChanged();
+                        users.add((String) friendKey.getKey());
                     }
 
 
@@ -65,15 +70,19 @@ public class ConvoDisplayFriendList extends AppCompatActivity {
             });
 
 
+
             mUserDatabaseReference = mFirebaseDatabase.getReference().child("Users");
             mUserDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for(DataSnapshot user : dataSnapshot.getChildren()) {
                         Users userObject = user.getValue(Users.class);
-                        if (userObject.getGroup().equals("2")){
-//                            usersList.add(userObject);
-//                            mUserAdapter.notifyDataSetChanged();
+                        for(String s: users){
+                            if(userObject.uid.equals(s)){
+                                Log.e("FRIEND FOUND", "UKA");
+                                mUserAdapter.add(userObject);
+                                mUserAdapter.notifyDataSetChanged();
+                            }
                         }
 
                     }
@@ -87,5 +96,13 @@ public class ConvoDisplayFriendList extends AppCompatActivity {
         } else {
             // No user is signed in
         }
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
     }
 }
