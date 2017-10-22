@@ -36,7 +36,7 @@ public class InitiatedMessageAdapter extends ArrayAdapter<InitiatedMessage> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.item_message, parent, false);
+            convertView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.item_initiated_message, parent, false);
         }
 
 

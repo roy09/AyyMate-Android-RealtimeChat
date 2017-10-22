@@ -28,7 +28,7 @@ public class TempActivity extends AppCompatActivity {
     }
 
     public void personalChat(View v){
-        Intent intent = new Intent(this, PersonalChat.class);
+        Intent intent = new Intent(this, InitiatedMessagesActivity.class);
         startActivity(intent);
     }
 
