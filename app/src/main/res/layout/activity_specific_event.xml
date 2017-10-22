@@ -17,7 +17,10 @@
         android:textColor="@android:color/black"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:shadowColor="@android:color/darker_gray"/>
+        android:shadowColor="@android:color/darker_gray"
+        android:textStyle="bold"
+        android:paddingBottom="30dp"
+        />
 
     <TextView
 
