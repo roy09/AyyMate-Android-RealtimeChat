@@ -5,31 +5,31 @@ package com.google.firebase.udacity.friendlychat;
  */
 
 public class InitiatedMessage {
-    String senderName;
-    String lastMessage;
+    String chat_id;
+    Users user;
 
     public InitiatedMessage(){
 
     }
 
-    public InitiatedMessage(String senderName, String lastMessage){
-        this.senderName = senderName;
-        this.lastMessage = lastMessage;
+    public InitiatedMessage(String chat_id, Users user) {
+        this.chat_id = chat_id;
+        this.user = user;
     }
 
-    public String getSenderName() {
-        return senderName;
+    public String getChat_id() {
+        return chat_id;
     }
 
-    public void setSenderName(String senderName) {
-        this.senderName = senderName;
+    public void setChat_id(String chat_id) {
+        this.chat_id = chat_id;
     }
 
-    public String getLastMessage() {
-        return lastMessage;
+    public Users getUser() {
+        return user;
     }
 
-    public void setLastMessage(String lastMessage) {
-        this.lastMessage = lastMessage;
+    public void setUser(Users user) {
+        this.user = user;
     }
 }

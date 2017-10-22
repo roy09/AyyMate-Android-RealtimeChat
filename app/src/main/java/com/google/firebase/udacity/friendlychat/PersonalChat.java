@@ -51,7 +51,9 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PersonalChat extends AppCompatActivity {
 
@@ -84,6 +86,11 @@ public class PersonalChat extends AppCompatActivity {
     private StorageReference mChatPhotoStorageReference;
     private FirebaseAuth.AuthStateListener mAuthStateListener; // reference to authstatelistener
 
+
+    String friendUid;
+
+    String newChat;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,11 +98,13 @@ public class PersonalChat extends AppCompatActivity {
 
         mUsername = ANONYMOUS;
 
+        friendUid = getIntent().getStringExtra("friendUid");
+        newChat = getIntent().getStringExtra("newChat");
+
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mFirebaseAUth = FirebaseAuth.getInstance();
         mFirebaseStorage = FirebaseStorage.getInstance();
 
-        mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("messages");
         mChatPhotoStorageReference = mFirebaseStorage.getReference().child("chat_photos");
 
         // Initialize references to views
@@ -167,6 +176,24 @@ public class PersonalChat extends AppCompatActivity {
                 if (user != null){
                     // user is logged in
                     String uid = user.getUid();
+
+                    if (newChat.equals("true")){
+                        mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("personal").push();
+                        String key = mMessagesDatabaseReference.getKey();
+                        Map<String,Object> taskMap = new HashMap<>();
+                        taskMap.put("key", key);
+                        taskMap.put("id", friendUid);
+                        FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("chats").push().setValue(taskMap);
+                        taskMap = new HashMap<>();
+                        taskMap.put("key", key);
+                        taskMap.put("id", uid);
+                        FirebaseDatabase.getInstance().getReference().child("Users").child(friendUid).child("chats").push().setValue(taskMap);
+                    } else {
+                        mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("personal").child("GET_FUCKED");
+                    }
+
+
+
                     mUserDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("name");
                     mUserDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
