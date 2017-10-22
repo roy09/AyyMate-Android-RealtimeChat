@@ -21,6 +21,7 @@ public class ConvoDisplayFriendList extends AppCompatActivity {
 
     FirebaseDatabase mFirebaseDatabase;
     DatabaseReference mFriendsReference;
+    DatabaseReference mUserDatabaseReference;
 
     String uid;
 
@@ -49,15 +50,38 @@ public class ConvoDisplayFriendList extends AppCompatActivity {
             mFriendsReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-//                    for(dataSnapshot )
-                    Log.e("MY FRIEND", (String) dataSnapshot.getValue());
-                    adapter.add((String) dataSnapshot.getValue());
-                    adapter.notifyDataSetChanged();
+                    for(DataSnapshot friendKey: dataSnapshot.getChildren()){
+                        adapter.add((String) friendKey.getKey());
+                        adapter.notifyDataSetChanged();
+                    }
+
+
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 
+                }
+            });
+
+
+            mUserDatabaseReference = mFirebaseDatabase.getReference().child("Users");
+            mUserDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for(DataSnapshot user : dataSnapshot.getChildren()) {
+                        Users userObject = user.getValue(Users.class);
+                        if (userObject.getGroup().equals("2")){
+//                            usersList.add(userObject);
+//                            mUserAdapter.notifyDataSetChanged();
+                        }
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
                 }
             });
         } else {
