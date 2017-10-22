@@ -98,8 +98,11 @@ public class PersonalChat extends AppCompatActivity {
 
         mUsername = ANONYMOUS;
 
-        friendUid = getIntent().getStringExtra("friendUid");
+
         newChat = getIntent().getStringExtra("newChat");
+        if (newChat.equals("true")){
+            friendUid = getIntent().getStringExtra("friendUid");
+        }
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mFirebaseAUth = FirebaseAuth.getInstance();
@@ -189,7 +192,8 @@ public class PersonalChat extends AppCompatActivity {
                         taskMap.put("id", uid);
                         FirebaseDatabase.getInstance().getReference().child("Users").child(friendUid).child("chats").push().setValue(taskMap);
                     } else {
-                        mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("personal").child("GET_FUCKED");
+                        String message_id = getIntent().getStringExtra("chat_id");
+                        mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("personal").child(message_id);
                     }
 
 
