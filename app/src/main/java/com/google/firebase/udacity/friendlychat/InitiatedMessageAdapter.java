@@ -42,6 +42,9 @@ public class InitiatedMessageAdapter extends ArrayAdapter<InitiatedMessage> {
 
         InitiatedMessage object = getItem(position);
 
+        TextView txtViewMessageSender = (TextView) convertView.findViewById(R.id.txtViewMessageSender);
+        txtViewMessageSender.setText(object.getUser().getName());
+
 
         return convertView;
     }

@@ -1,5 +1,6 @@
 package com.google.firebase.udacity.friendlychat;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -101,7 +102,13 @@ public class ConvoDisplayFriendList extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Users temp = usersList.get(position);
+                String frienduid = temp.getUid();
 
+                Intent intent = new Intent(ConvoDisplayFriendList.this, PersonalChat.class);
+                intent.putExtra("friendUid", frienduid);
+                intent.putExtra("newChat", "true");
+                startActivity(intent);
             }
         });
     }
