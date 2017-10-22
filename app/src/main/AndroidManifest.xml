@@ -9,17 +9,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".TempActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
+        <activity android:name=".MainActivity" />
+        <activity android:name=".PersonalChat" />
+        <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity android:name=".MainActivity" />
-        <activity android:name=".PersonalChat" />
-        <activity android:name=".StartActivity"/>
+        </activity>>
         <activity android:name=".EventsActivity"/>
 
         <activity android:name=".RegisterActivity" />
