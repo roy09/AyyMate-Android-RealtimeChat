@@ -17,8 +17,8 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".PersonalChat" />
-        <activity android:name=".StartActivity"></activity>
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".StartActivity" />
+        <activity android:name=".RegisterActivity" />
         <activity
             android:name=".LoginActivity"
             android:parentActivityName=".StartActivity" />
@@ -37,7 +37,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".GroupMemberList" />
-        <activity android:name=".RequestsActivity"></activity>
+        <activity android:name=".RequestsActivity" />
+        <activity android:name=".InitiatedMessagesActivity"></activity>
     </application>
 
 </manifest>
