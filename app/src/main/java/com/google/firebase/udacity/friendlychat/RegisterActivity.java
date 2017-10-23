@@ -108,6 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         HashMap<String, String> userMap = new HashMap<>();
                         userMap.put("name", display_name);
+//                        userMap.put("group", "-1");
                         userMap.put("status", "Hi there I'm using AyyMate Chat App.");
                         userMap.put("image", "default");
                         userMap.put("thumb_image", "default");

@@ -26,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,6 +75,7 @@ public class ChatsFragment extends Fragment {
     private ImageButton mPhotoPickerButton;
     private EditText mMessageEditText;
     private Button mSendButton;
+    private RelativeLayout rl;
 
     private String mUsername;
     private String userGroup;
@@ -138,6 +140,7 @@ public class ChatsFragment extends Fragment {
             mPhotoPickerButton = (ImageButton) mMainView.findViewById(R.id.photoPickerButton);
             mMessageEditText = (EditText) mMainView.findViewById(R.id.messageEditText);
             mSendButton = (Button) mMainView.findViewById(R.id.sendButton);
+            rl=(RelativeLayout) mMainView.findViewById(R.id.layoutid);
 
             // Initialize message ListView and its adapter
             List<FriendlyMessage> friendlyMessages = new ArrayList<>();
@@ -146,6 +149,7 @@ public class ChatsFragment extends Fragment {
 
             // Initialize progress bar
             mProgressBar.setVisibility(ProgressBar.INVISIBLE);
+             //-----------------------
 
 
             // Enable Send button when there's text to send
@@ -175,6 +179,7 @@ public class ChatsFragment extends Fragment {
                 public void onClick(View view) {
                     // TODO: Send messages on click
                     FriendlyMessage friendlyMessage = new FriendlyMessage(mMessageEditText.getText().toString(), mUsername, null);
+
                     mMessagesDatabaseReference.push().setValue(friendlyMessage);
                     // Clear input box
                     mMessageEditText.setText("");
@@ -212,14 +217,16 @@ public class ChatsFragment extends Fragment {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 Log.e("OH", "WE ARE HERE");
-//                            userGroup = "24";
+//                            userGroup = "-1";
 //                            Log.e("OH PASA",(String) dataSnapshot.getValue());
                                 if(userGroup != null && !userGroup.isEmpty()){
                                     mMessagesDatabaseReference = FirebaseDatabase.getInstance().getReference().child("groups").child(userGroup).child("messages");
+                                    rl.setVisibility(RelativeLayout.VISIBLE);
                                 } else{
                                     Toast.makeText(getActivity(), "You're not currently assigned to any group", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getActivity(), TempActivity.class);
-                                    startActivity(intent);
+                                   // Intent intent = new Intent(getActivity(), TempActivity.class);
+                                    //startActivity(intent);
+                                    rl.setVisibility(RelativeLayout.GONE);
                                 }
                             }
                             //
@@ -239,7 +246,10 @@ public class ChatsFragment extends Fragment {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 String userDisplayName = (String) dataSnapshot.getValue();
-                                onSignedInInitialize(userDisplayName);
+                                if (mMessagesDatabaseReference != null){
+                                    onSignedInInitialize(userDisplayName);
+                                }
+
 
                             }
 
