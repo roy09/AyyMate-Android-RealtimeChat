@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            Intent mainIntent = new Intent(LoginActivity.this, TempActivity.class);
+                            Intent mainIntent = new Intent(LoginActivity.this, SectionsActivity.class);
                             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(mainIntent);
                             finish();
