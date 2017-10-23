@@ -21,6 +21,9 @@
         <activity android:name=".PersonalChat" />
         <activity android:name=".StartActivity"/>
         <activity android:name=".EventsActivity"/>
+        <activity android:name=".SectionsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+
+
 
         <activity android:name=".RegisterActivity" />
         <activity

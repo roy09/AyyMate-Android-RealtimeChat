@@ -99,7 +99,7 @@ public class TempActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.sign_out_menu:
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(TempActivity.this, LoginActivity.class);
+                Intent intent = new Intent(TempActivity.this, StartActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
@@ -140,6 +140,10 @@ public class TempActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.Chat) {
+
+            Intent intent = new Intent(this, SectionsActivity.class);
+
+            startActivity(intent);
             //   Intent talktopeopleTempIntent = new Intent(this,TempActivity.class);
             //   startActivity(talktopeopleTempIntent);
 
