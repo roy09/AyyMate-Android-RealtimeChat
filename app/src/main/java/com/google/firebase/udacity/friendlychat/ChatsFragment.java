@@ -219,9 +219,10 @@ public class ChatsFragment extends Fragment {
                                 Log.e("OH", "WE ARE HERE");
 //                            userGroup = "-1";
 //                            Log.e("OH PASA",(String) dataSnapshot.getValue());
+                                userGroup = (String) dataSnapshot.getValue();
                                 if(userGroup != null && !userGroup.isEmpty()){
                                     mMessagesDatabaseReference = FirebaseDatabase.getInstance().getReference().child("groups").child(userGroup).child("messages");
-                                    rl.setVisibility(RelativeLayout.VISIBLE);
+                                   // rl.setVisibility(RelativeLayout.VISIBLE);
                                 } else{
                                     Toast.makeText(getActivity(), "You're not currently assigned to any group", Toast.LENGTH_SHORT).show();
                                    // Intent intent = new Intent(getActivity(), TempActivity.class);
