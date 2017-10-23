@@ -63,7 +63,7 @@ public class RequestsActivity extends AppCompatActivity {
         mFriendDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
         mNotificationDatabase = FirebaseDatabase.getInstance().getReference().child("notifications");
         mCurrent_user = FirebaseAuth.getInstance().getCurrentUser();
-        mUserDatabaseReference = mFirebaseDatabase.getReference().child("Users");
+//        mUserDatabaseReference = mFirebaseDatabase.getReference().child("Users");
 
         mUsersListView = (ListView) findViewById(R.id.listview);
 
@@ -79,13 +79,14 @@ public class RequestsActivity extends AppCompatActivity {
         mNotificationDatabase.child(mCurrent_user.getUid()).orderByValue().addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                HashMap<?, ?> requestMap = (HashMap) dataSnapshot.getValue();
-                Toast.makeText(RequestsActivity.this, "The " + dataSnapshot.getKey() + " score is " + requestMap.get("from"), Toast.LENGTH_LONG).show();
+                if(dataSnapshot.exists()) {
+                    HashMap<?, ?> requestMap = (HashMap) dataSnapshot.getValue();
+                    Toast.makeText(RequestsActivity.this, "The " + dataSnapshot.getKey() + " score is " + requestMap.get("from"), Toast.LENGTH_LONG).show();
 
-                Intent profileIntent = new Intent(RequestsActivity.this, ProfileActivity.class);
-                profileIntent.putExtra("user_id", requestMap.get("from").toString());
-                startActivity(profileIntent);
-
+                    Intent profileIntent = new Intent(RequestsActivity.this, ProfileActivity.class);
+                    profileIntent.putExtra("user_id", requestMap.get("from").toString());
+                    startActivity(profileIntent);
+                }
 
             }
 

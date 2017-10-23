@@ -258,7 +258,7 @@ public class ChatsFragment extends Fragment {
                             public void onCancelled(DatabaseError databaseError) {
                             }
                         });
-                        Toast.makeText(getActivity(), "You're signed in", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), "You're signed in", Toast.LENGTH_SHORT).show();
                     } else {
                         // user is logged out, so initate login activity
                         onSignedOutCleanup();
