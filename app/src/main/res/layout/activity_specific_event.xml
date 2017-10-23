@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="12sp"
+    android:paddingRight="12dp">
+
+
+    <TextView
+        android:paddingTop="30dp"
+        android:id="@+id/editTextEventName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textColor="@android:color/black"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:shadowColor="@android:color/darker_gray"
+        android:textStyle="bold"
+        android:paddingBottom="30dp"
+
+        />
+
+    <TextView
+
+        android:id="@+id/txtViewEventLocation"
+        android:text="Location"
+        android:paddingTop="15dp"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/editTextEventName"
+        android:layout_toEndOf="@+id/imageView2" />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_compass"
+        android:layout_below="@+id/editTextEventName"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/editTextEventLocation" />
+
+    <TextView
+        android:id="@+id/editTextEventLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/darker_gray"
+        android:layout_below="@+id/txtViewEventLocation"
+        android:layout_alignParentStart="true" />
+
+
+    <TextView
+        android:id="@+id/txtViewEventType"
+        android:text="Type"
+        android:textSize="25sp"
+        android:paddingTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextEventLocation"
+        android:layout_toEndOf="@+id/imageView3"
+        android:textColor="@android:color/black"/>
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editTextEventLocation"
+        app:srcCompat="@android:drawable/ic_menu_agenda"
+        android:layout_above="@+id/editTextEventType"
+        android:layout_toStartOf="@+id/txtViewEventLocation" />
+
+    <TextView
+        android:id="@+id/editTextEventType"
+        android:layout_below="@+id/txtViewEventType"
+        android:layout_width="match_parent"
+
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/darker_gray"
+        android:textAlignment="textEnd"/>
+
+    <TextView
+        android:id="@+id/txtViewEventDesc"
+        android:text="Description"
+        android:textSize="25sp"
+        android:paddingTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextEventType"
+        android:layout_toEndOf="@+id/imageView4"
+        android:textColor="@android:color/black"
+        />
+
+    <TextView
+        android:id="@+id/editTextEventDesc"
+        android:layout_below="@+id/txtViewEventDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@android:color/darker_gray"
+        android:textAlignment="textEnd"/>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editTextEventDesc"
+        android:layout_alignParentStart="true"
+        app:srcCompat="@android:drawable/ic_input_get"
+        android:layout_below="@+id/editTextEventType"
+        android:layout_toStartOf="@+id/txtViewEventType" />
+
+
+</RelativeLayout>

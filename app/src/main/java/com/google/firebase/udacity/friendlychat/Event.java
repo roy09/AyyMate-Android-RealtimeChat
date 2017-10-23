@@ -1,10 +1,12 @@
 package com.google.firebase.udacity.friendlychat;
 
+import java.io.Serializable;
+
 /**
  * Created by desktop on 19/10/2017.
  */
 
-public class Event {
+public class Event implements Serializable {
 
     String title;
     String locaiton;

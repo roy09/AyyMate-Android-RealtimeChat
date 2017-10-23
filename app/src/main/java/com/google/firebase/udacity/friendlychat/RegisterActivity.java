@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -89,56 +90,64 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void register_user(final String display_name, String email, String password) {
 
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+        String domain = email.substring(email.indexOf("@") + 1);
+        if (domain.equals("uni.sydney.edu.au")){
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
 
-                if(task.isSuccessful()){
+                    if(task.isSuccessful()){
 
 
-                    FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
-                    String uid = current_user.getUid();
+                        FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
+                        String uid = current_user.getUid();
 
-                    mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+                        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
 
-                    String device_token = FirebaseInstanceId.getInstance().getToken();
+                        String device_token = FirebaseInstanceId.getInstance().getToken();
 
-                    HashMap<String, String> userMap = new HashMap<>();
-                    userMap.put("name", display_name);
-                    userMap.put("status", "Hi there I'm using AyyMate Chat App.");
-                    userMap.put("image", "default");
-                    userMap.put("thumb_image", "default");
-                    userMap.put("device_token", device_token);
-                    userMap.put("uid", uid);
+                        HashMap<String, String> userMap = new HashMap<>();
+                        userMap.put("name", display_name);
+                        userMap.put("status", "Hi there I'm using AyyMate Chat App.");
+                        userMap.put("image", "default");
+                        userMap.put("thumb_image", "default");
+                        userMap.put("device_token", device_token);
+                        userMap.put("uid", uid);
 
-                    mDatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
+                        mDatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
 
-                            if(task.isSuccessful()){
+                                if(task.isSuccessful()){
 
-                                mRegProgress.dismiss();
+                                    mRegProgress.dismiss();
 
-                                Intent mainIntent = new Intent(RegisterActivity.this, TempActivity.class);
-                                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(mainIntent);
-                                finish();
+                                    Intent mainIntent = new Intent(RegisterActivity.this, TempActivity.class);
+                                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(mainIntent);
+                                    finish();
+
+                                }
 
                             }
-
-                        }
-                    });
+                        });
 
 
-                } else {
+                    } else {
 
-                    mRegProgress.hide();
-                    Toast.makeText(RegisterActivity.this, "Cannot Sign in. Please check the form and try again.", Toast.LENGTH_LONG).show();
+                        mRegProgress.hide();
+                        Toast.makeText(RegisterActivity.this, "Cannot Sign in. Please check the form and try again.", Toast.LENGTH_LONG).show();
+
+                    }
 
                 }
+            });
+        } else {
+            Toast.makeText(RegisterActivity.this, "We are only accpeting USyd students at the moment", Toast.LENGTH_LONG).show();
+        }
 
-            }
-        });
+
+
 
     }
 }
