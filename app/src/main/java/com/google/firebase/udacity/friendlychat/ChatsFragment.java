@@ -214,9 +214,13 @@ public class ChatsFragment extends Fragment {
                                 Log.e("OH", "WE ARE HERE");
 //                            userGroup = "24";
 //                            Log.e("OH PASA",(String) dataSnapshot.getValue());
-                                userGroup = (String) dataSnapshot.getValue();
-                                mMessagesDatabaseReference = FirebaseDatabase.getInstance().getReference().child("groups").child(userGroup).child("messages");
-
+                                if(userGroup != null && !userGroup.isEmpty()){
+                                    mMessagesDatabaseReference = FirebaseDatabase.getInstance().getReference().child("groups").child(userGroup).child("messages");
+                                } else{
+                                    Toast.makeText(getActivity(), "You're not currently assigned to any group", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getActivity(), TempActivity.class);
+                                    startActivity(intent);
+                                }
                             }
                             //
                             @Override

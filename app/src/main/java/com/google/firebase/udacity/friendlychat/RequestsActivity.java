@@ -63,7 +63,7 @@ public class RequestsActivity extends AppCompatActivity {
         mFriendDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
         mNotificationDatabase = FirebaseDatabase.getInstance().getReference().child("notifications");
         mCurrent_user = FirebaseAuth.getInstance().getCurrentUser();
-        //mUserDatabaseReference = mFirebaseDatabase.getReference().child("Users");
+        mUserDatabaseReference = mFirebaseDatabase.getReference().child("Users");
 
         mUsersListView = (ListView) findViewById(R.id.listview);
 

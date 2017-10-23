@@ -133,7 +133,7 @@ public class SectionsActivity extends AppCompatActivity implements NavigationVie
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
 
 
         return true;
